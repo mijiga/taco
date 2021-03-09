@@ -23,8 +23,6 @@ class CategoryFragment : Fragment() {
 
     private val viewModel: SearchFoodViewModel by viewModels()
 
-    private val args : CategoryFragmentArgs by navArgs()
-    val category = args.category
 
     private lateinit var binding: FragmentSearchFoodBinding;
 
@@ -49,11 +47,6 @@ class CategoryFragment : Fragment() {
         binding.recyclerView.adapter = foodAdapter
         binding.recyclerView.layoutManager = LinearLayoutManager(context, VERTICAL, false)
 
-        if(category != null){
-            viewModel.getByCategory(category.id ).observe(viewLifecycleOwner, Observer {
-                it.let { foodAdapter.submitList(it) }
-            })
-        }
 
     }
 

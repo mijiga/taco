@@ -54,12 +54,12 @@ class SearchFoodFragment : Fragment() {
          * if category passed in safeArgs is null then fetch get all info from Room
          */
         if(category != null){
-            viewModel.getByCategory(category.id ).observe(viewLifecycleOwner, Observer {
+            viewModel.getByCategory(category.id ).observe(viewLifecycleOwner, {
                 it.let { foodAdapter.submitList(it) }
             })
             (requireActivity() as MainActivity).title = category.name
         }else{
-            viewModel.info.observe(viewLifecycleOwner, Observer {
+            viewModel.info.observe(viewLifecycleOwner, {
                 it.let { foodAdapter.submitList(it) }
             })
             (requireActivity() as MainActivity).title = context?.getString(R.string.menu_search) ?: "Search"

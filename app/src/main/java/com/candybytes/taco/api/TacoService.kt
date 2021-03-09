@@ -15,7 +15,7 @@ interface TacoService {
      * Request a specific category
      */
     @GET("api/v1/category/{categoryId}")
-    suspend fun getCategoryAsync(@Path("categoryId") categoryId: Int): Category
+    suspend fun getCategoryAsync(@Path("categoryId") categoryId: Int): List<Category>
 
     /**
      * Request all available categories

@@ -9,9 +9,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.candybytes.taco.R
 import com.candybytes.taco.databinding.ItemFoodBinding
-import com.candybytes.taco.ui.fragments.CategoryFragment
-import com.candybytes.taco.ui.fragments.CategoryFragmentDirections
-import com.candybytes.taco.ui.fragments.CategoryListFragmentDirections
 import com.candybytes.taco.ui.fragments.SearchFoodFragmentDirections
 import com.candybytes.taco.vo.Food
 

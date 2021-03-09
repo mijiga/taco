@@ -43,8 +43,6 @@ class CategoryListFragment : Fragment() {
         binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
 
         viewModel.categories.observe(viewLifecycleOwner, Observer {
-            Log.d("CategoryListFragment", it.toString())
-
             it.let { categoryAdapter.submitList(it)}
         })
 

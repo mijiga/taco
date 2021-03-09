@@ -2,7 +2,6 @@
 <layout>
 
     <data>
-
         <variable
             name="category"
             type="com.candybytes.taco.vo.Category" />
@@ -37,6 +36,7 @@
             android:layout_margin="8dp"
             app:layout_constraintBaseline_toBaselineOf="@id/title"
             app:layout_constraintEnd_toEndOf="parent"
+            android:text="@{String.valueOf(category.id)}"
             tools:text="#1" />
 
         <!--
