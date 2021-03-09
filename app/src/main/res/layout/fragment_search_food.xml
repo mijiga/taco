@@ -5,6 +5,7 @@
 
     <data>
         <variable name="viewModel" type="com.candybytes.taco.ui.vm.SearchFoodViewModel"/>
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

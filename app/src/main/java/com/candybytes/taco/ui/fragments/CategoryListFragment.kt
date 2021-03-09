@@ -20,7 +20,7 @@ class CategoryListFragment : Fragment() {
 
     private val viewModel: CategoriesViewModel by viewModels()
 
-    private lateinit var binding: FragmentCategoryListBinding;
+    private lateinit var binding: FragmentCategoryListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

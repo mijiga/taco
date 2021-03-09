@@ -37,7 +37,8 @@ class CategoryAdapter : ListAdapter<Category, CategoryAdapter.CategoryViewHolder
 
         holder.binding.category = currentCategory
         holder.binding.root.setOnClickListener {
-            it.findNavController().navigate(R.id.action_categoriesFragment_to_categoryFragment)
+            val action = CategoryListFragmentDirections.actionCategoriesFragmentToSearchFoodFragment(currentCategory)
+            it.findNavController().navigate(action)
         }
         holder.binding.executePendingBindings()
     }

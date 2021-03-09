@@ -5,24 +5,39 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import com.candybytes.taco.R
+import com.candybytes.taco.databinding.FragmentFoodBinding
+import com.candybytes.taco.ui.MainActivity
 
 class FoodFragment : Fragment() {
 
+    val args: FoodFragmentArgs by navArgs()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
-    }
+    private lateinit var binding: FragmentFoodBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        binding = FragmentFoodBinding.inflate(layoutInflater, container, false).apply {
+            food = args.food
+        }
         return inflater.inflate(R.layout.fragment_food, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val food = args.food
+
+        if(food != null){
+            (activity as AppCompatActivity).supportActionBar?.title = food.description
+        }
+
     }
 
 

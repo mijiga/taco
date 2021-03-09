@@ -5,12 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+import com.candybytes.taco.R
 import com.candybytes.taco.databinding.FragmentSearchFoodBinding
+import com.candybytes.taco.ui.MainActivity
 import com.candybytes.taco.ui.adapters.FoodAdapter
 import com.candybytes.taco.ui.vm.SearchFoodViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,6 +25,8 @@ class SearchFoodFragment : Fragment() {
     private val viewModel: SearchFoodViewModel by viewModels()
 
     private lateinit var binding: FragmentSearchFoodBinding;
+
+    private val args : SearchFoodFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,16 +45,25 @@ class SearchFoodFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val foodAdapter = FoodAdapter()
+        val category = args.category
 
         binding.recyclerView.adapter = foodAdapter
         binding.recyclerView.layoutManager = LinearLayoutManager(context, VERTICAL, false)
 
-        viewModel.info.observe(viewLifecycleOwner, Observer {
-            Log.d("SearchFoodFragment", it.toString())
-
-            it.let { foodAdapter.submitList(it) }
-        })
-
+        /**
+         * if category passed in safeArgs is null then fetch get all info from Room
+         */
+        if(category != null){
+            viewModel.getByCategory(category.id ).observe(viewLifecycleOwner, Observer {
+                it.let { foodAdapter.submitList(it) }
+            })
+            (requireActivity() as MainActivity).title = category.name
+        }else{
+            viewModel.info.observe(viewLifecycleOwner, Observer {
+                it.let { foodAdapter.submitList(it) }
+            })
+            (requireActivity() as MainActivity).title = context?.getString(R.string.menu_search) ?: "Search"
+        }
     }
 
 }
