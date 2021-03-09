@@ -1,3 +1,6 @@
+## Taco
+Ellipsis interview challenge solution app using Android Architecture Components, Complete in Kotlin 
+
 ## Tech-stack
 
 * Tech-stack
@@ -5,6 +8,8 @@
     * [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform background operations.
     * [Flow](https://kotlinlang.org/docs/reference/coroutines/flow.html) - handle the stream of data asynchronously that executes sequentially.
     * [Dagger-Hilt](https://dagger.dev/hilt/) - a dependency injection framework.
+    * [Retrofit](https://square.github.io/retrofit/) A type-safe HTTP client for Android and Java
+    
     * [Jetpack](https://developer.android.com/jetpack)
         * [Room](https://developer.android.com/topic/libraries/architecture/room) - a persistence library provides an abstraction layer over SQLite.
         * [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - is an observable data holder.
