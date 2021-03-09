@@ -18,4 +18,7 @@ interface FoodDao {
     @Query("SELECT * FROM food")
     suspend fun getAllAsync(): List<Food>
 
+    @Query("SELECT * FROM food WHERE categoryId =:categoryID")
+    suspend fun getCategoryFoods(categoryID: Int): List<Food>
+
 }

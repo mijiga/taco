@@ -23,4 +23,13 @@ class CategoriesViewModel @ViewModelInject constructor(
     }.map { "Loaded ${it.size} categories\nImplement a list view and show all category elements." }
 
 
+    val categories = liveData {
+        try {
+            emit(tacoService.getAllCategoriesAsync())
+        }catch (e: Exception){
+            Timber.e(e);
+        }
+    }
+
+
 }

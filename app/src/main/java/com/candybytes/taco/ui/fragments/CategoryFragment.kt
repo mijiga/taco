@@ -2,10 +2,10 @@ package com.candybytes.taco.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +16,8 @@ import com.candybytes.taco.ui.vm.SearchFoodViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchFoodFragment : Fragment() {
+class CategoryFragment : Fragment() {
+
 
     private val viewModel: SearchFoodViewModel by viewModels()
 
@@ -28,8 +29,8 @@ class SearchFoodFragment : Fragment() {
     ): View {
 
         binding =  FragmentSearchFoodBinding.inflate(layoutInflater, container, false).apply {
-            viewModel = this@SearchFoodFragment.viewModel
-            lifecycleOwner = this@SearchFoodFragment
+            viewModel = this@CategoryFragment.viewModel
+            lifecycleOwner = this@CategoryFragment
         }
 
         return binding.root
@@ -43,12 +44,14 @@ class SearchFoodFragment : Fragment() {
         binding.recyclerView.adapter = foodAdapter
         binding.recyclerView.layoutManager = LinearLayoutManager(context, VERTICAL, false)
 
-        viewModel.info.observe(viewLifecycleOwner, Observer {
-            Log.d("SearchFoodFragment", it.toString())
+        viewModel.getByCategory(1).observe(viewLifecycleOwner, Observer {
+            Log.d("CategoryFoodFragment", it.toString())
 
             it.let { foodAdapter.submitList(it) }
         })
 
     }
+
+
 
 }

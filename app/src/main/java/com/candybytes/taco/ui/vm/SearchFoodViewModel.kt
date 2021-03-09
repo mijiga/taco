@@ -2,11 +2,9 @@ package com.candybytes.taco.ui.vm
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import androidx.lifecycle.map
+import androidx.lifecycle.*
 import com.candybytes.taco.db.FoodDao
+import com.candybytes.taco.vo.Food
 import timber.log.Timber
 
 class SearchFoodViewModel @ViewModelInject constructor(
@@ -21,7 +19,16 @@ class SearchFoodViewModel @ViewModelInject constructor(
         } catch (e: Exception) {
             Timber.e(e)
         }
-    }.map { "Loaded ${it.size} foods" }
+    }
 
-
+    fun getByCategory(categoryID: Int): LiveData<List<Food>>{
+        return liveData {
+            try {
+                val foods = foodDao.getCategoryFoods(categoryID)
+                emit(foods)
+            } catch (e: Exception) {
+                Timber.e(e)
+            }
+        }
+    }
 }
